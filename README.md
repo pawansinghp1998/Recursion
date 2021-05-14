@@ -85,3 +85,44 @@ class Solution {
       }
         
 }
+
+Q.3.(1780).Given an integer n, return true if it is possible to represent n as the sum of distinct powers of three. Otherwise, return false.
+
+An integer y is a power of three if there exists an integer x such that y == 3x.
+
+ Input: n = 12
+Output: true
+Explanation: 12 = 31 + 32
+
+Input: n = 91
+Output: true
+Explanation: 91 = 30 + 32 + 34
+
+Input: n = 21
+Output: false
+
+class Solution { 
+    int index=15;boolean z=false;int x=0;
+    
+    public boolean checkPowersOfThree(int n) {
+      
+        if(n==0)
+            z= true;
+        if(n>0 && index>0)                                       //Condition to enter into for loop and recursion
+        {
+            int i=0;
+       for(i=0;i<index ;i++)                                       //Finding the maximum index so that Math.pow(3,index-1)<n  and also index can not repeat
+       {
+           if(Math.pow(3,i)>n)
+           {
+               index=i;
+               break;
+               }
+         }
+            index=index-1;                                   //this is done so that in next call index must be one less than previous condition if ,if condition of for loop does                                                                  not become true , and index value remain same for next iteration also
+        x=(int)Math.pow(3,(index));
+        checkPowersOfThree(n-x);                             //calling function recursively by changing value of n
+    } 
+       return z;
+    }
+}
