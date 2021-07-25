@@ -232,3 +232,32 @@ class Solution {
         return 2*check(nums,0,nums.length-1)>=sum;
     }
 }
+
+M2.class Solution { 
+    public int check(int nums[],int s, int e)
+    {
+        if(s==e)
+        {
+            return nums[e];
+        }
+       // int a=nums[s]+Math.min(check(nums,s+2,e),check(nums,s+1,e-1));
+       // int b=nums[e]+Math.min(check(nums,s,e-2),check(nums,s+1,e-1));
+        
+        int a=nums[s]-check(nums,s+1,e);
+        int b=nums[e]-check(nums,s,e-1);
+        return Math.max(a,b);
+    }
+    public boolean PredictTheWinner(int[] nums) {
+        /*if(nums.length %2==0)
+        {
+            return true;
+        }
+        int sum=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            sum=sum+nums[i];
+        }
+        return 2*check(nums,0,nums.length-1)>=sum;*/
+        return check(nums,0,nums.length-1)>=0;
+    }
+}
